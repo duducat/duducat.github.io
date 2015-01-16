@@ -39,6 +39,8 @@
     
       <li><a href="/archives">Archives</a></li>
     
+      <li><a href="/test">Test</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -55,11 +57,11 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-16T12:18:09.000Z"><a href="/2015/01/16/hello-world/">Jan 16 2015</a></time>
+        <time datetime="2015-01-16T17:38:59.000Z"><a href="/2015/01/17/helloworld/">Jan 17 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/16/hello-world/">Hello World</a></h1>
+    <h1 class="title"><a href="/2015/01/17/helloworld/">Hello World</a></h1>
   
 
     </header>
@@ -78,11 +80,49 @@
 <h3 id="Generate_static_files">Generate static files</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
 
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-16T16:15:03.000Z"><a href="/2015/01/17/docker/">Jan 17 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/17/docker/">docker</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor"># dmsetup targets </span></div><div class="line">thin-pool v1<span class="number">.0</span><span class="number">.0</span> </div><div class="line">thin v1<span class="number">.0</span><span class="number">.0</span></div></pre></td></tr></table></figure>
+
+<p>启动服务</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker -<span class="constant">H</span> <span class="symbol">unix:</span>/<span class="regexp">//dev</span><span class="regexp">/shm/docker</span>.sock -d &</div></pre></td></tr></table></figure>
+
+<p>在中央索引中查找公共库</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker -<span class="constant">H</span> <span class="symbol">unix:</span>/<span class="regexp">//dev</span><span class="regexp">/shm/docker</span>.sock search centos</div></pre></td></tr></table></figure>
+
+<p>下载镜像</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker -<span class="constant">H</span> <span class="symbol">unix:</span>/<span class="regexp">//dev</span><span class="regexp">/shm/docker</span>.sock pull centos</div></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -115,8 +155,43 @@
 </div>
 
   
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/01/17/helloworld/">Hello World</a>
+      </li>
+    
+      <li>
+        <a href="/2015/01/17/docker/">docker</a>
+      </li>
+    
+  </ul>
+</div>
+
 
   
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/server/">server</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/install/">install</a><small>1</small></li>
+  
+  </ul>
+</div>
+
 </aside>
     <div class="clearfix"></div>
   </div>

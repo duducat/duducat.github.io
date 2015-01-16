@@ -16,14 +16,14 @@ body {
   font-size: 14px;
   text-shadow: 0 0 1px transparent;
 }
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 1024px) {
   body {
     margin: 0 30px;
   }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   body {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 h1,
@@ -68,35 +68,35 @@ a:hover {
   clear: both;
 }
 .inner {
-  width: 1200px;
+  width: 1000px;
   margin: 0 auto;
 }
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 1024px) {
   .inner {
     width: 100%;
   }
 }
 #main-col {
-  width: 900px;
+  width: 700px;
 }
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 1024px) {
   #main-col {
     width: 100%;
-    margin-right: -300px;
+    margin-right: -200px;
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   #main-col {
     margin-right: 0;
     float: none;
   }
 }
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 1024px) {
   #wrapper {
-    margin-right: 300px;
+    margin-right: 200px;
   }
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   #wrapper {
     margin-right: 0;
   }
@@ -548,7 +548,7 @@ article footer .addthis iframe {
   width: 270px;
   line-height: 1.8em;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
   #sidebar {
     float: none;
     width: 100%;

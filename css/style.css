@@ -139,7 +139,7 @@ article {
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
   background: #fff;
-  font-weight: 300;
+  font-weight: 400;
   color: #999;
 }
 article.page {
@@ -270,7 +270,7 @@ article header time {
   line-height: 1;
 }
 article header .title {
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
 }
 article header .title a {
@@ -368,7 +368,7 @@ article .entry dl dl {
 }
 article .entry h1,
 article .entry h2 {
-  font-weight: 300;
+  font-weight: 400;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
   margin-top: 20px;
@@ -377,7 +377,7 @@ article .entry h3,
 article .entry h4,
 article .entry h5,
 article .entry h6 {
-  font-weight: 300;
+  font-weight: 400;
 }
 article .entry img,
 article .entry video {
@@ -436,7 +436,7 @@ article footer {
   border-top: 1px solid #ddd;
   color: #666;
   font-size: 1em;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 16px;
   position: relative;
   min-height: 16px;
@@ -584,7 +584,7 @@ article footer .addthis iframe {
   padding: 15px 20px;
   color: #666;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 400;
   display: block;
   margin-left: 3px;
 }

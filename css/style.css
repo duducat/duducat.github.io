@@ -139,6 +139,8 @@ article {
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
   background: #fff;
+  font-weight: 400;
+  color: #999;
 }
 article.page {
   padding-left: 20px;
@@ -152,8 +154,14 @@ article.post .icon:before {
 article.photo .icon:before {
   content: '\f030';
 }
+article.link {
+  color: #666;
+}
 article.link .icon:before {
   content: '\f0c1';
+}
+article.link .title {
+  color: #999;
 }
 article.link .title a:after {
   content: '\f08e';
@@ -266,6 +274,8 @@ article header time {
 }
 article header .title {
   font-weight: normal;
+  text-transform: uppercase;
+  color: #999;
 }
 article header .title a {
   color: #444;
@@ -429,7 +439,8 @@ article footer {
   padding-top: 10px;
   border-top: 1px solid #ddd;
   color: #999;
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: 400;
   line-height: 16px;
   position: relative;
   min-height: 16px;

@@ -565,22 +565,20 @@ article footer .addthis iframe {
 #sidebar .widget .title {
   padding: 15px 20px;
   font-size: 1.1em;
-  font-weight: bold;
+  font-weight: 400;
   display: block;
   color: #999;
   text-transform: uppercase;
-  font-weight: bold;
   position: relative;
   padding-left: 20px;
-  list-style-type: circle;
 }
 #sidebar .widget .entry {
-  font-size: 0.9em;
+  font-size: 1em;
   padding: 15px 20px;
   color: #666;
   text-decoration: none;
+  font-weight: 300;
   display: block;
-  font-weight: bold;
   margin-left: 3px;
 }
 #sidebar .widget ul,

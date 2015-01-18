@@ -64,6 +64,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/01/18/brew/">brew</a>
+      </li>
+    
+      <li>
         <a href="/2015/01/18/github_hexo/">github &amp; hexo</a>
       </li>
     
@@ -87,6 +91,8 @@
     <li><a href="/categories/cmd/">cmd</a><small>1</small></li>
   
     <li><a href="/categories/getting-start/">getting_start</a><small>2</small></li>
+  
+    <li><a href="/categories/install/">install</a><small>1</small></li>
   
   </ul>
 </div>
@@ -128,7 +134,7 @@
       
         <h3 id="配置github_Repository">配置github Repository</h3>
 <ul>
-<li>新增一个Repository，并在 setting 里public<br>Repository 的 name必须为你的 GitHub 用户名,比如你的用户名是SB，则Repository为SB.github.io</li>
+<li>新增一个<code>Repository</code>，并在 <code>setting</code> 里 <code>public</code><br>Repository 的 name必须为你的 GitHub 用户名,比如你的用户名是SB，则Repository为SB.github.io</li>
 <li>配置ssh-key，已配可以不用再配置<br>测试是否配置成功</li>
 </ul>
 <figure class="highlight"><pre><div class="line"><span class="title">ssh</span> -T git<span class="variable">@github</span>.com</div></pre></figure>
@@ -141,11 +147,11 @@
 <figure class="highlight"><pre><div class="line">$ wget http<span class="variable">s:</span>//raw.github.<span class="keyword">com</span>/creationix/nvm/master/install.<span class="keyword">sh</span> | <span class="keyword">sh</span></div></pre></figure>
 
 <p>酱紫会把nvm安装到你的家目录下，如果你不喜欢把脚本里面的目录改到你喜欢就可以了</p>
-<p>然后运行以下目录安装 Node.js</p>
+<p>然后运行以下目录安装 <code>Node.js</code></p>
 <figure class="highlight"><pre><div class="line"><span class="variable">$ </span>nvm install <span class="number">0</span>.<span class="number">10</span></div></pre></figure>
 
 <p>这个安装的时候可能会失败，我就是，不过去官网下个安装就好了 <a href="http://nodejs.org" target="_blank" rel="external">node.js</a></p>
-<p>安装完了可以用npm来安装hexo了</p>
+<p>安装完了可以用 <code>npm</code> 来安装 <code>hexo</code> 了</p>
 <figure class="highlight"><pre><div class="line"><span class="variable">$ </span>npm install -g hexo</div></pre></figure>
 
 <h3 id="快速开始使用_Hexo">快速开始使用 Hexo</h3>
@@ -165,11 +171,11 @@
 <figure class="highlight"><pre><div class="line"><span class="variable">$ </span>hexo server</div></pre></figure>
 
 <ul>
-<li>发布到GitHub</li>
+<li>发布到<code>GitHub</code></li>
 </ul>
 <figure class="highlight"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></figure>
 
-<p>酱紫就可以访问看看是不是有激动人心的 hello world 呢</p>
+<p>酱紫就可以访问看看是不是有激动人心的 <code>hello world</code> 呢</p>
 
       
     </div>

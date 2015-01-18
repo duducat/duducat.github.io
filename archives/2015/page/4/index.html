@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>getingstart | 大脸猫的博客</title>
+  <title>Page 4 | Archives: 2015 | 大脸猫的博客</title>
   <meta name="author" content="Joie liang">
   
   <meta name="description" content="就是博客啊，博客是什么，不知道哇">
@@ -64,15 +64,19 @@
   <ul class="entry">
     
       <li>
-        <a href="/2015/01/18/github-blog/">github blog</a>
+        <a href="/2015/01/18/at_shanghai/">江浙好吃好玩的</a>
       </li>
     
       <li>
-        <a href="/2015/01/17/find/">find</a>
+        <a href="/2015/01/18/github_hexo/">github &amp; hexo</a>
       </li>
     
       <li>
         <a href="/2015/01/17/docker/">docker</a>
+      </li>
+    
+      <li>
+        <a href="/2015/01/17/find/">find</a>
       </li>
     
   </ul>
@@ -86,9 +90,7 @@
   
     <li><a href="/categories/cmd/">cmd</a><small>1</small></li>
   
-    <li><a href="/categories/getingstart/">getingstart</a><small>1</small></li>
-  
-    <li><a href="/categories/server/">server</a><small>1</small></li>
+    <li><a href="/categories/getting-start/">getting_start</a><small>2</small></li>
   
   </ul>
 </div>
@@ -108,7 +110,7 @@
 
 </aside>
     <div id="main-col" class="alignright"><div id="wrapper">
-<h2 class="archive-title category">getingstart</h2>
+<h2 class="archive-title">2015</h2>
 
 
   
@@ -118,38 +120,30 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-17T16:05:53.000Z"><a href="/2015/01/18/github-blog/">Jan 18 2015</a></time>
+        <time datetime="2015-01-16T16:15:03.000Z"><a href="/2015/01/17/find/">Jan 17 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/18/github-blog/">github blog</a></h1>
+    <h1 class="title"><a href="/2015/01/17/find/">find</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="配置github_Repository">配置github Repository</h3>
-<ul>
-<li>新增一个Repository，并在 setting 里public<br>Repository 的 name必须为你的 GitHub 用户名,比如你的用户名是SB，则Repository为SB.github.io</li>
-<li>配置ssh-key，已配可以不用再配置<br>测试是否配置成功</li>
-</ul>
-<figure class="highlight"><pre><div class="line"><span class="title">ssh</span> -T git<span class="variable">@github</span>.com</div></pre></figure>
+        <p>常用清理</p>
+<figure class="highlight"><pre><div class="line"><span class="built_in">find</span> /diska/logs/ -type f -name \*.log -ctime +<span class="number">15</span> -exec rm -f {} \;</div><div class="line"><span class="built_in">find</span> /<span class="keyword">var</span>/spool/clientmqueue/ -ctime +<span class="number">15</span> -exec rm -f {} \;</div><div class="line"><span class="built_in">find</span> /<span class="keyword">var</span>/spool/<span class="keyword">postfix</span>/maildrop/ -ctime +<span class="number">15</span> -exec rm -f {} \;</div><div class="line"><span class="built_in">find</span> /diska/test/ -type d -name <span class="string">".svn"</span>|xargs rm -rf</div></pre></figure>
 
-<p>若返回如下即成功</p>
-<p>Hi SB! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-<p><strong>酱紫你就可以用markdown来开始写你的博客啦</strong></p>
-<p>不过Github上的主题可能不是你想要的，而且这样子，增加博客修改博客也不方面，然后就有了下一步啦，也是小伙伴推荐给我用，然后我自己弄了一下，总算可以方便快捷的用起来啦。</p>
-<h3 id="安装配置hexo_for_mac">安装配置hexo for mac</h3>
-<p>官网在这里 <a href="http://hexo.io" target="_blank" rel="external">hexo</a></p>
-<figure class="highlight"><pre><div class="line">$ wget http<span class="variable">s:</span>//raw.github.<span class="keyword">com</span>/creationix/nvm/master/install.<span class="keyword">sh</span> | <span class="keyword">sh</span></div></pre></figure>
+<h1 id="更好的做法，xargs_-0_将\0作为输入定界符">更好的做法，xargs -0 将\0作为输入定界符</h1>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> . -<span class="built_in">type</span> <span class="keyword">f</span> -name <span class="string">"*.txt"</span> -print0 | xargs -<span class="number">0</span> rm -<span class="keyword">f</span></div></pre></figure>
 
-<p>酱紫会把nvm安装到你的家目录下，如果你不喜欢把脚本里面的目录改到你喜欢就可以了</p>
-<p>然后运行以下目录安装 Node.js</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>nvm install <span class="number">0</span>.<span class="number">10</span></div></pre></figure>
+<p>删除inode n 的文件</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> /tmp -inum <span class="keyword">n</span> -<span class="built_in">type</span> <span class="keyword">f</span> -<span class="keyword">print</span> | xargs /bin/rm -<span class="keyword">f</span></div><div class="line"><span class="keyword">find</span> . -inum <span class="number">524878</span>  | xargs /bin/rm -<span class="keyword">f</span></div></pre></figure>
 
-<p>这个安装的时候可能会失败，我就是，不过去官网下个安装就好了 <a href="http://nodejs.org" target="_blank" rel="external">node.js</a></p>
-<p>安装完了可以用npm来安装hexo了</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>npm install -g hexo</div></pre></figure>
+<p>删除大于100M的</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> /tmp -size +<span class="number">10</span>M <span class="keyword">n</span> -<span class="built_in">type</span> <span class="keyword">f</span> -<span class="keyword">print</span> | xargs /bin/rm -<span class="keyword">f</span></div></pre></figure>
+
+<p>删除7天或7天以内修改的文件</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> / -<span class="built_in">type</span> <span class="keyword">f</span> -mtime -<span class="number">7</span>  | xargs /bin/rm -<span class="keyword">f</span></div></pre></figure>
 
 
       
@@ -170,6 +164,8 @@
   
 
   <nav id="pagination">
+  
+    <a href="/archives/2015/page/3/" class="alignleft prev">Prev</a>
   
   
   <div class="clearfix"></div>

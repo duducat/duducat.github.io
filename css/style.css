@@ -435,7 +435,7 @@ article footer {
   padding-top: 10px;
   border-top: 1px solid #ddd;
   color: #666;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: 350;
   line-height: 16px;
   position: relative;
@@ -461,6 +461,7 @@ article footer a.comment-link:before {
 }
 article footer .categories,
 article footer .tags {
+  text-transform: uppercase;
   position: relative;
   padding-left: 25px;
   margin: 5px 0;
@@ -580,9 +581,10 @@ article footer .addthis iframe {
   padding-left: 20px;
 }
 #sidebar .widget .entry {
-  font-size: 1em;
+  font-size: 0.9em;
   padding: 15px 20px;
   color: #666;
+  text-transform: uppercase;
   text-decoration: none;
   font-weight: 350;
   display: block;

@@ -158,7 +158,10 @@
 <p>另：<br>在 <code>Mac</code> 下运行</p>
 <figure class="highlight"><pre><div class="line"><span class="title">sed</span> -i <span class="string">"s/haha/heihei/g"</span> pssh.md</div></pre></figure>
 
-<p>会报酱紫的错<br><code>sed: 1: &quot;pssh.md&quot;: extra characters at the end of p command</code><br>应该酱紫用,加个空串 <code>&quot;&quot;</code></p>
+<p>会报酱紫的错</p>
+<figure class="highlight"><pre><div class="line">sed: <span class="number">1</span>: <span class="string">"pssh.md"</span>: extra <span class="keyword">characters</span> <span class="keyword">at</span> <span class="operator">the</span> <span class="function"><span class="keyword">end</span> <span class="title">of</span> <span class="title">p</span> <span class="title">command</span></span></div></pre></figure>
+
+<p>应该酱紫用,加个空串 <code>&quot;&quot;</code></p>
 <figure class="highlight"><pre><div class="line"><span class="title">sed</span> -i <span class="string">""</span> <span class="string">"s/haha/heihei/g"</span> pssh.md</div></pre></figure>
 
 

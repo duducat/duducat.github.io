@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Page 2 | Archives: 2015 | 大脸猫的博客</title>
+  <title>Page 5 | 大脸猫的博客</title>
   <meta name="author" content="Joie liang">
   
   <meta name="description" content="就是博客啊，博客是什么，不知道哇">
@@ -116,37 +116,36 @@
 
 </aside>
     <div id="main-col" class="alignright"><div id="wrapper">
-<h2 class="archive-title">2015</h2>
-
-
-  
-    <article class="post">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-18T11:39:43.000Z"><a href="/2015/01/18/brew/">Jan 18 2015</a></time>
+        <time datetime="2015-01-16T16:15:03.000Z"><a href="/2015/01/17/find/">Jan 17 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/18/brew/">brew</a></h1>
+    <h1 class="title"><a href="/2015/01/17/find/">find</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>安装brew</p>
-<figure class="highlight"><pre><div class="line">$ ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></div></pre></figure>
+        <p>常用清理</p>
+<figure class="highlight"><pre><div class="line"><span class="built_in">find</span> /diska/logs/ -type f -name \*.log -ctime +<span class="number">15</span> -exec rm -f {} \;</div><div class="line"><span class="built_in">find</span> /<span class="keyword">var</span>/spool/clientmqueue/ -ctime +<span class="number">15</span> -exec rm -f {} \;</div><div class="line"><span class="built_in">find</span> /<span class="keyword">var</span>/spool/<span class="keyword">postfix</span>/maildrop/ -ctime +<span class="number">15</span> -exec rm -f {} \;</div><div class="line"><span class="built_in">find</span> /diska/test/ -type d -name <span class="string">".svn"</span>|xargs rm -rf</div></pre></figure>
 
-<p>测试安装结果</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>brew doctor</div></pre></figure>
+<p><strong>更好的做法，xargs -0 将\0作为输入定界符</strong></p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> . -<span class="built_in">type</span> <span class="keyword">f</span> -name <span class="string">"*.txt"</span> -print0 | xargs -<span class="number">0</span> rm -<span class="keyword">f</span></div></pre></figure>
 
-<p>安装你想要安装的软件wget</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>brew install wget</div></pre></figure>
+<p>删除inode n 的文件</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> /tmp -inum <span class="keyword">n</span> -<span class="built_in">type</span> <span class="keyword">f</span> -<span class="keyword">print</span> | xargs /bin/rm -<span class="keyword">f</span></div><div class="line"><span class="keyword">find</span> . -inum <span class="number">524878</span>  | xargs /bin/rm -<span class="keyword">f</span></div></pre></figure>
 
-<p>安装c调试，gdb</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>brew install homebrew/dupes/gdb</div></pre></figure>
+<p>删除大于100M的</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> /tmp -size +<span class="number">10</span>M <span class="keyword">n</span> -<span class="built_in">type</span> <span class="keyword">f</span> -<span class="keyword">print</span> | xargs /bin/rm -<span class="keyword">f</span></div></pre></figure>
+
+<p>删除7天或7天以内修改的文件</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">find</span> / -<span class="built_in">type</span> <span class="keyword">f</span> -mtime -<span class="number">7</span>  | xargs /bin/rm -<span class="keyword">f</span></div></pre></figure>
 
 
       
@@ -164,17 +163,17 @@
 
 
 
-  
 
-  <nav id="pagination">
+
+
+        <nav id="pagination">
   
-    <a href="/archives/2015/" class="alignleft prev">Prev</a>
+    <a href="/page/4/" class="alignleft prev">Prev</a>
   
-  
-    <a href="/archives/2015/page/3/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
-</nav>
+</nav> 
+
 </div></div>
     <div class="clearfix"></div>
   </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>docker | 大脸猫的博客</title>
+  <title>ssh | 大脸猫的博客</title>
   <meta name="author" content="Joie liang">
   
   <meta name="description" content="就是博客啊，博客是什么，不知道哇">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="docker"/>
+  <meta property="og:title" content="ssh"/>
   <meta property="og:site_name" content="大脸猫的博客"/>
 
   
@@ -121,28 +121,20 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-16T16:15:03.000Z"><a href="/2015/01/17/docker/">Jan 17 2015</a></time>
+        <time datetime="2015-01-20T05:36:05.000Z"><a href="/2015/01/20/ssh/">Jan 20 2015</a></time>
       
       
   
-    <h1 class="title">docker</h1>
+    <h1 class="title">ssh</h1>
   
 
     </header>
     <div class="entry">
       
-        <p><img src="http://duducat.github.io/img/hello.jpg" alt="hello"></p>
-<figure class="highlight"><pre><div class="line"><span class="preprocessor"># dmsetup targets </span></div><div class="line">thin-pool v1<span class="number">.0</span><span class="number">.0</span> </div><div class="line">thin v1<span class="number">.0</span><span class="number">.0</span></div></pre></figure>
+        <h3 id="ssh_配置">ssh 配置</h3>
+<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>ssh-keygen -t rsa </div><div class="line"><span class="constant">Generating </span>public/private rsa key pair.</div><div class="line"><span class="constant">Enter </span>file <span class="keyword">in</span> which to save the key (<span class="regexp">/home/xiaoqiao</span>.liang/.ssh/id_rsa)<span class="symbol">:</span></div><div class="line"><span class="constant">Enter </span>passphrase (empty <span class="keyword">for</span> no passphrase)<span class="symbol">:</span></div><div class="line"><span class="constant">Enter </span>same passphrase <span class="symbol">again:</span></div><div class="line"><span class="constant">Your </span>identification has been saved <span class="keyword">in</span> /home/xiaoqiao.liang/.ssh/id_rsa.</div><div class="line"><span class="constant">Your </span>public key has been saved <span class="keyword">in</span> /home/xiaoqiao.liang/.ssh/id_rsa.pub.</div><div class="line"><span class="constant">The </span>key fingerprint <span class="symbol">is:</span></div><div class="line"><span class="number">29</span><span class="symbol">:</span><span class="number">3</span><span class="symbol">f:</span><span class="number">84</span><span class="symbol">:</span><span class="number">6</span><span class="symbol">b:</span><span class="number">07</span><span class="symbol">:f5</span><span class="symbol">:ef</span><span class="symbol">:</span><span class="number">4</span><span class="symbol">a:</span><span class="number">31</span><span class="symbol">:c4</span><span class="symbol">:a8</span><span class="symbol">:b5</span><span class="symbol">:d4</span><span class="symbol">:bb</span><span class="symbol">:</span><span class="number">35</span><span class="symbol">:bc</span></div><div class="line"></div><div class="line"><span class="variable">$ </span>ssh username<span class="variable">@remote</span>-server.org</div><div class="line">username<span class="variable">@remote</span>-server.org<span class="string">'s password:</span></div><div class="line"></div><div class="line">$ mkdir ~/.ssh</div><div class="line">$ chmod 700 ~/.ssh</div><div class="line">$ cat ~/id_ecdsa.pub &gt;&gt; ~/.ssh/authorized_keys && rm ~/id_ecdsa.pub </div><div class="line">$ chmod 600 ~/.ssh/authorized_keys</div></pre></figure>
 
-<p>启动服务</p>
-<figure class="highlight"><pre><div class="line">docker -<span class="constant">H</span> <span class="symbol">unix:</span>/<span class="regexp">//dev</span><span class="regexp">/shm/docker</span>.sock -d &</div></pre></figure>
-
-<p>在中央索引中查找公共库</p>
-<figure class="highlight"><pre><div class="line">docker -<span class="constant">H</span> <span class="symbol">unix:</span>/<span class="regexp">//dev</span><span class="regexp">/shm/docker</span>.sock search centos</div></pre></figure>
-
-<p>下载镜像</p>
-<figure class="highlight"><pre><div class="line">docker -<span class="constant">H</span> <span class="symbol">unix:</span>/<span class="regexp">//dev</span><span class="regexp">/shm/docker</span>.sock pull centos</div></pre></figure>
-
+<p>注意权限文件及目录权限</p>
 
       
     </div>
@@ -151,15 +143,10 @@
         
   
   <div class="categories">
-    <a href="/categories/getting-start/">getting_start</a>
+    <a href="/categories/cmd/">cmd</a>
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/install/">install</a>
-  </div>
-
         
   <div class="addthis addthis_toolbox addthis_default_style">
     

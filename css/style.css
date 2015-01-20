@@ -602,6 +602,7 @@ ol.toc {
 .archive-title {
   color: #666;
   font-weight: normal;
+  text-transform: uppercase;
   margin-bottom: 30px;
   text-shadow: 0 0 1px #fff;
 }

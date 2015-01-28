@@ -64,6 +64,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/01/28/tcpcopy/">tcpcopy 压力测试</a>
+      </li>
+    
+      <li>
+        <a href="/2015/01/28/nginx-log/">nginx log 分析</a>
+      </li>
+    
+      <li>
         <a href="/2015/01/20/ssh/">ssh</a>
       </li>
     
@@ -73,14 +81,6 @@
     
       <li>
         <a href="/2015/01/18/brew/">brew</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/18/github_hexo/">github &amp; hexo</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/17/find/">find</a>
       </li>
     
   </ul>
@@ -95,6 +95,8 @@
     <li><a href="/categories/cmd/">cmd</a><small>3</small></li>
   
     <li><a href="/categories/getting-start/">getting_start</a><small>2</small></li>
+  
+    <li><a href="/categories/hello/">hello</a><small>2</small></li>
   
     <li><a href="/categories/install/">install</a><small>1</small></li>
   
@@ -122,60 +124,45 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-17T16:05:53.000Z"><a href="/2015/01/18/github_hexo/">Jan 18 2015</a></time>
+        <time datetime="2015-01-20T05:36:05.000Z"><a href="/2015/01/20/pssh/">Jan 20 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/18/github_hexo/">github &amp; hexo</a></h1>
+    <h1 class="title"><a href="/2015/01/20/pssh/">pssh</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="配置github_Repository">配置github Repository</h3>
-<ul>
-<li>新增一个<code>Repository</code>，并在 <code>setting</code> 里 <code>public</code><br><code>Repository</code> 的 <code>name</code> 必须为你的 <code>GitHub</code> 用户名,比如你的用户名是 <code>SB</code> ，则 <code>Repository</code> 为 <code>SB.github.io</code></li>
-<li>配置 <code>ssh-key</code> ，已配可以不用再配置<br>测试是否配置成功</li>
-</ul>
-<figure class="highlight"><pre><div class="line"><span class="title">ssh</span> -T git<span class="variable">@github</span>.com</div></pre></figure>
+        <h3 id="pssh_使用相关">pssh 使用相关</h3>
+<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>gsh --ssh=<span class="string">"ssh -p2222 -o 'StrictHostKeyChecking no'"</span> <span class="number">10.11</span>.<span class="number">80.2</span> <span class="number">10.11</span>.<span class="number">80.3</span> <span class="number">10.11</span>.<span class="number">80.4</span></div><div class="line"></div><div class="line"><span class="variable">$ </span>pssh -<span class="constant">A</span> -x <span class="string">'-t -t -o StrictHostKeyChecking=no'</span> -i -<span class="constant">H</span> username<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">1</span><span class="symbol">:</span><span class="number">2222</span> date</div><div class="line"></div><div class="line"><span class="variable">$ </span>pssh -<span class="constant">A</span> -x <span class="string">'-t -t -o StrictHostKeyChecking=no’ -i -h onlinelist '</span>command<span class="string">'</span></div></pre></figure>
 
-<p>若返回如下即成功</p>
-<p>Hi SB! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-<p>不过Github上的主题可能不是你想要的，而且这样子，增加博客修改博客也不方面，然后就有了下一步啦，也是小伙伴推荐给我用，然后我自己弄了一下，总算可以方便快捷的用起来啦。</p>
-<h3 id="安装配置hexo_for_mac">安装配置hexo for mac</h3>
-<p>官网在这里 <a href="http://hexo.io" target="_blank" rel="external">hexo</a></p>
-<figure class="highlight"><pre><div class="line">$ wget http<span class="variable">s:</span>//raw.github.<span class="keyword">com</span>/creationix/nvm/master/install.<span class="keyword">sh</span> | <span class="keyword">sh</span></div></pre></figure>
 
-<p>酱紫会把nvm安装到你的家目录下，如果你不喜欢把脚本里面的目录改到你喜欢就可以了</p>
-<p>然后运行以下目录安装 <code>Node.js</code></p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>nvm install <span class="number">0</span>.<span class="number">10</span></div></pre></figure>
 
-<p>这个安装的时候可能会失败，我就是，不过去官网下个安装就好了 <a href="http://nodejs.org" target="_blank" rel="external">node.js</a></p>
-<p>安装完了可以用 <code>npm</code> 来安装 <code>hexo</code> 了</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>npm install -g hexo</div></pre></figure>
+<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>vi onlinelist</div><div class="line">username<span class="variable">@ip</span><span class="symbol">:port</span>    <span class="comment"># 格式</span></div><div class="line">username<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">1</span><span class="symbol">:</span><span class="number">2222</span></div></pre></figure>
 
-<h3 id="快速开始使用_Hexo">快速开始使用 Hexo</h3>
-<ul>
-<li>初始化博客</li>
-</ul>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>mkdir duducat.github.io</div><div class="line"><span class="variable">$ </span>cd duducat.github.io</div><div class="line"><span class="variable">$ </span>hexo init</div></pre></figure>
+<p><code>-A</code> 提示输入机器密码</p>
+<p>使用 <code>-i</code> 输出信息：</p>
+<figure class="highlight"><pre><div class="line">[<span class="number">1</span>] <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> [SUCCESS] username<span class="localvars">@192</span><span class="number">.168</span><span class="number">.1</span><span class="number">.1</span>:<span class="number">2222</span></div><div class="line">Tue <span class="keyword">Dec</span> <span class="number">16</span> <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> CST <span class="number">2014</span></div><div class="line"><span class="label">Stderr:</span> Connection to <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span> closed.</div><div class="line">[<span class="number">2</span>] <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> [SUCCESS] username<span class="localvars">@192</span><span class="number">.168</span><span class="number">.1</span><span class="number">.1</span>:<span class="number">2222</span></div><div class="line">Tue <span class="keyword">Dec</span> <span class="number">16</span> <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> CST <span class="number">2014</span></div><div class="line"><span class="label">Stderr:</span> Connection to <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span> closed.</div></pre></figure>
 
-<ul>
-<li>安装建站所需文件</li>
-</ul>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>npm install</div></pre></figure>
+<p>使用 <code>-P</code> 输出信息：</p>
+<figure class="highlight"><pre><div class="line">192<span class="class">.168</span><span class="class">.1</span><span class="class">.1</span>: <span class="tag">Tue</span> <span class="tag">Dec</span> 16 15<span class="pseudo">:53</span><span class="pseudo">:16</span> <span class="tag">CST</span> 2014</div><div class="line"><span class="attr_selector">[1]</span> 15<span class="pseudo">:53</span><span class="pseudo">:16</span> <span class="attr_selector">[SUCCESS]</span> <span class="tag">username</span><span class="at_rule">@<span class="keyword">192.168.1.1:2222</span></span></div><div class="line"><span class="number">192.168</span>.<span class="number">1.1</span>: Tue Dec <span class="number">16</span> <span class="number">15</span>:<span class="number">53</span>:<span class="number">16</span> CST <span class="number">2014</span></div><div class="line">[<span class="number">2</span>] <span class="number">15</span>:<span class="number">53</span>:<span class="number">16</span> [SUCCESS] username@<span class="number">192.168</span>.<span class="number">1.1</span>:<span class="number">2222</span></div><div class="line"><span class="number">14.17</span>.<span class="number">116.171</span>: Tue Dec <span class="number">16</span> <span class="number">15</span>:<span class="number">53</span>:<span class="number">16</span> CST <span class="number">2014</span></div></pre></figure>
 
-<ul>
-<li>本地运行服务</li>
-</ul>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>hexo server</div></pre></figure>
+<p>使用 <code>-o outdir</code> 输出信息,可以查看输出信息</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">ll</span> outdir</div></pre></figure>
 
-<ul>
-<li>发布到<code>GitHub</code></li>
-</ul>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></figure>
+<p>传输文件 <code>filename</code> 到 <code>/home/dstdir</code> 下</p>
+<figure class="highlight"><pre><div class="line">pscp -h onlinelist filename <span class="regexp">/home/</span>dstdir</div></pre></figure>
 
-<p>酱紫就可以访问看看是不是有激动人心的 <code>hello world</code> 呢</p>
+<p>另：<br>在 <code>Mac</code> 下运行</p>
+<figure class="highlight"><pre><div class="line"><span class="title">sed</span> -i <span class="string">"s/haha/heihei/g"</span> pssh.md</div></pre></figure>
+
+<p>会报酱紫的错</p>
+<figure class="highlight"><pre><div class="line">sed: <span class="number">1</span>: <span class="string">"pssh.md"</span>: extra <span class="keyword">characters</span> <span class="keyword">at</span> <span class="operator">the</span> <span class="function"><span class="keyword">end</span> <span class="title">of</span> <span class="title">p</span> <span class="title">command</span></span></div></pre></figure>
+
+<p>应该酱紫用,加个空串 <code>&quot;&quot;</code></p>
+<figure class="highlight"><pre><div class="line"><span class="title">sed</span> -i <span class="string">""</span> <span class="string">"s/haha/heihei/g"</span> pssh.md</div></pre></figure>
+
 
       
     </div>

@@ -64,6 +64,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/01/30/lvs/">LVS</a>
+      </li>
+    
+      <li>
         <a href="/2015/01/28/tcpcopy/">tcpcopy 压力测试</a>
       </li>
     
@@ -79,10 +83,6 @@
         <a href="/2015/01/20/pssh/">pssh</a>
       </li>
     
-      <li>
-        <a href="/2015/01/18/brew/">brew</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -94,7 +94,7 @@
   
     <li><a href="/categories/cmd/">cmd</a><small>3</small></li>
   
-    <li><a href="/categories/getting-start/">getting_start</a><small>2</small></li>
+    <li><a href="/categories/getting-start/">getting_start</a><small>3</small></li>
   
     <li><a href="/categories/hello/">hello</a><small>2</small></li>
   
@@ -128,20 +128,31 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-20T05:36:05.000Z"><a href="/2015/01/20/ssh/">Jan 20 2015</a></time>
+        <time datetime="2015-01-28T09:55:25.000Z"><a href="/2015/01/28/nginx-log/">Jan 28 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/20/ssh/">ssh</a></h1>
+    <h1 class="title"><a href="/2015/01/28/nginx-log/">nginx log 分析</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="ssh_配置">ssh 配置</h3>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>ssh-keygen -t rsa </div><div class="line"><span class="constant">Generating </span>public/private rsa key pair.</div><div class="line"><span class="constant">Enter </span>file <span class="keyword">in</span> which to save the key (<span class="regexp">/home/xiaoqiao</span>.liang/.ssh/id_rsa)<span class="symbol">:</span></div><div class="line"><span class="constant">Enter </span>passphrase (empty <span class="keyword">for</span> no passphrase)<span class="symbol">:</span></div><div class="line"><span class="constant">Enter </span>same passphrase <span class="symbol">again:</span></div><div class="line"><span class="constant">Your </span>identification has been saved <span class="keyword">in</span> /home/xiaoqiao.liang/.ssh/id_rsa.</div><div class="line"><span class="constant">Your </span>public key has been saved <span class="keyword">in</span> /home/xiaoqiao.liang/.ssh/id_rsa.pub.</div><div class="line"><span class="constant">The </span>key fingerprint <span class="symbol">is:</span></div><div class="line"><span class="number">29</span><span class="symbol">:</span><span class="number">3</span><span class="symbol">f:</span><span class="number">84</span><span class="symbol">:</span><span class="number">6</span><span class="symbol">b:</span><span class="number">07</span><span class="symbol">:f5</span><span class="symbol">:ef</span><span class="symbol">:</span><span class="number">4</span><span class="symbol">a:</span><span class="number">31</span><span class="symbol">:c4</span><span class="symbol">:a8</span><span class="symbol">:b5</span><span class="symbol">:d4</span><span class="symbol">:bb</span><span class="symbol">:</span><span class="number">35</span><span class="symbol">:bc</span></div><div class="line"></div><div class="line"><span class="variable">$ </span>ssh username<span class="variable">@remote</span>-server.org</div><div class="line">username<span class="variable">@remote</span>-server.org<span class="string">'s password:</span></div><div class="line"></div><div class="line">$ mkdir ~/.ssh</div><div class="line">$ chmod 700 ~/.ssh</div><div class="line">$ cat ~/id_ecdsa.pub &gt;&gt; ~/.ssh/authorized_keys && rm ~/id_ecdsa.pub </div><div class="line">$ chmod 600 ~/.ssh/authorized_keys</div></pre></figure>
+        <p>nginx日志格式</p>
+<figure class="highlight"><pre><div class="line">log_format  main  '<span class="variable">$remote_addr</span> <span class="variable">$http_host</span> <span class="variable">$upstream_addr</span> [<span class="variable">$time_local</span>] <span class="variable">$request</span> '</div><div class="line">                  '<span class="string">"<span class="variable">$status</span>"</span> <span class="variable">$body_bytes_sent</span> <span class="string">"<span class="variable">$http_referer</span>"</span> '</div><div class="line">                  '<span class="string">"<span class="variable">$http_user_agent</span>"</span> <span class="string">"<span class="variable">$http_x_forwarded_for</span>"</span> <span class="string">"<span class="variable">$request_time</span>"</span>'<span class="comment">;</span></div></pre></figure>
 
-<p>注意权限文件及目录权限</p>
+<p>打印响应时间并且去除引号</p>
+<figure class="highlight"><pre><div class="line">$ <span class="keyword">cat</span> test.<span class="built_in">log</span>|awk <span class="string">'{print $(NF)}'</span>| awk -F <span class="string">"\""</span> <span class="string">'{print $2}'</span>  &gt;<span class="keyword">a</span>.txt</div></pre></figure>
+
+<p>合并文件，将时间重新补上去</p>
+<figure class="highlight"><pre><div class="line">$ paste -d <span class="string">" "</span> test.<span class="built_in">log</span> <span class="operator">a</span>.txt &gt;b.txt</div></pre></figure>
+
+<p>查找响应时间大于2秒的url</p>
+<figure class="highlight"><pre><div class="line">$ cat b.txt |awk '(<span class="variable">$NF</span>&gt;<span class="number">2</span>){<span class="literal">print</span> <span class="variable">$6</span><span class="string">" "</span><span class="variable">$7</span><span class="string">" "</span><span class="variable">$NF</span>}'</div></pre></figure>
+
+<p>常用日志统计</p>
+<figure class="highlight"><pre><div class="line"><span class="shebang">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is top 10 of the access IP"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Time(s) IP address"</span></div><div class="line">cat access.log |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">1</span> | sort |uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"The total of 404 Page is:"</span></div><div class="line">cat access.log |grep <span class="string">'HTTP/1.1 "404"'</span> |wc <span class="operator">-l</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is top 10 of the 404 Page"</span></div><div class="line">cat access.log |grep <span class="string">'HTTP/1.1 "404"'</span> |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">7</span>| sort |uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is the top 10 of the request Page"</span></div><div class="line">cat access.log |sort -k <span class="number">6</span> |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">2</span>,<span class="number">7</span> |sort -k <span class="number">3</span> |uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is the top 10 of the max Concurrent "</span></div><div class="line">cat access.log |cut  <span class="operator">-d</span> <span class="string">'['</span> <span class="operator">-f</span>2 |cut <span class="operator">-d</span> <span class="string">']'</span> <span class="operator">-f</span>1 |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">1</span>|uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div></pre></figure>
+
 
       
     </div>

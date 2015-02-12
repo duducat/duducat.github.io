@@ -64,6 +64,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/02/12/iostat/">iostat</a>
+      </li>
+    
+      <li>
         <a href="/2015/01/30/lvs/">LVS</a>
       </li>
     
@@ -79,10 +83,6 @@
         <a href="/2015/01/20/ssh/">ssh</a>
       </li>
     
-      <li>
-        <a href="/2015/01/20/pssh/">pssh</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -92,7 +92,7 @@
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/cmd/">cmd</a><small>3</small></li>
+    <li><a href="/categories/cmd/">cmd</a><small>4</small></li>
   
     <li><a href="/categories/getting-start/">getting_start</a><small>3</small></li>
   
@@ -128,27 +128,44 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-18T11:39:43.000Z"><a href="/2015/01/18/brew/">Jan 18 2015</a></time>
+        <time datetime="2015-01-20T05:36:05.000Z"><a href="/2015/01/20/pssh/">Jan 20 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/18/brew/">brew</a></h1>
+    <h1 class="title"><a href="/2015/01/20/pssh/">pssh</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>安装brew</p>
-<figure class="highlight"><pre><div class="line">$ ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></div></pre></figure>
+        <h3 id="pssh_使用相关">pssh 使用相关</h3>
+<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>gsh --ssh=<span class="string">"ssh -p2222 -o 'StrictHostKeyChecking no'"</span> <span class="number">10.11</span>.<span class="number">80.2</span> <span class="number">10.11</span>.<span class="number">80.3</span> <span class="number">10.11</span>.<span class="number">80.4</span></div><div class="line"></div><div class="line"><span class="variable">$ </span>pssh -<span class="constant">A</span> -x <span class="string">'-t -t -o StrictHostKeyChecking=no'</span> -i -<span class="constant">H</span> username<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">1</span><span class="symbol">:</span><span class="number">2222</span> date</div><div class="line"></div><div class="line"><span class="variable">$ </span>pssh -<span class="constant">A</span> -x <span class="string">'-t -t -o StrictHostKeyChecking=no’ -i -h onlinelist '</span>command<span class="string">'</span></div></pre></figure>
 
-<p>测试安装结果</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>brew doctor</div></pre></figure>
 
-<p>安装你想要安装的软件wget</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>brew install wget</div></pre></figure>
 
-<p>安装c调试，gdb</p>
-<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>brew install homebrew/dupes/gdb</div></pre></figure>
+<figure class="highlight"><pre><div class="line"><span class="variable">$ </span>vi onlinelist</div><div class="line">username<span class="variable">@ip</span><span class="symbol">:port</span>    <span class="comment"># 格式</span></div><div class="line">username<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">1</span><span class="symbol">:</span><span class="number">2222</span></div></pre></figure>
+
+<p><code>-A</code> 提示输入机器密码</p>
+<p>使用 <code>-i</code> 输出信息：</p>
+<figure class="highlight"><pre><div class="line">[<span class="number">1</span>] <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> [SUCCESS] username<span class="localvars">@192</span><span class="number">.168</span><span class="number">.1</span><span class="number">.1</span>:<span class="number">2222</span></div><div class="line">Tue <span class="keyword">Dec</span> <span class="number">16</span> <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> CST <span class="number">2014</span></div><div class="line"><span class="label">Stderr:</span> Connection to <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span> closed.</div><div class="line">[<span class="number">2</span>] <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> [SUCCESS] username<span class="localvars">@192</span><span class="number">.168</span><span class="number">.1</span><span class="number">.1</span>:<span class="number">2222</span></div><div class="line">Tue <span class="keyword">Dec</span> <span class="number">16</span> <span class="number">15</span>:<span class="number">51</span>:<span class="number">14</span> CST <span class="number">2014</span></div><div class="line"><span class="label">Stderr:</span> Connection to <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span> closed.</div></pre></figure>
+
+<p>使用 <code>-P</code> 输出信息：</p>
+<figure class="highlight"><pre><div class="line">192<span class="class">.168</span><span class="class">.1</span><span class="class">.1</span>: <span class="tag">Tue</span> <span class="tag">Dec</span> 16 15<span class="pseudo">:53</span><span class="pseudo">:16</span> <span class="tag">CST</span> 2014</div><div class="line"><span class="attr_selector">[1]</span> 15<span class="pseudo">:53</span><span class="pseudo">:16</span> <span class="attr_selector">[SUCCESS]</span> <span class="tag">username</span><span class="at_rule">@<span class="keyword">192.168.1.1:2222</span></span></div><div class="line"><span class="number">192.168</span>.<span class="number">1.1</span>: Tue Dec <span class="number">16</span> <span class="number">15</span>:<span class="number">53</span>:<span class="number">16</span> CST <span class="number">2014</span></div><div class="line">[<span class="number">2</span>] <span class="number">15</span>:<span class="number">53</span>:<span class="number">16</span> [SUCCESS] username@<span class="number">192.168</span>.<span class="number">1.1</span>:<span class="number">2222</span></div><div class="line"><span class="number">14.17</span>.<span class="number">116.171</span>: Tue Dec <span class="number">16</span> <span class="number">15</span>:<span class="number">53</span>:<span class="number">16</span> CST <span class="number">2014</span></div></pre></figure>
+
+<p>使用 <code>-o outdir</code> 输出信息,可以查看输出信息</p>
+<figure class="highlight"><pre><div class="line"><span class="keyword">ll</span> outdir</div></pre></figure>
+
+<p>传输文件 <code>filename</code> 到 <code>/home/dstdir</code> 下</p>
+<figure class="highlight"><pre><div class="line">pscp -h onlinelist filename <span class="regexp">/home/</span>dstdir</div></pre></figure>
+
+<p>另：<br>在 <code>Mac</code> 下运行</p>
+<figure class="highlight"><pre><div class="line"><span class="title">sed</span> -i <span class="string">"s/haha/heihei/g"</span> pssh.md</div></pre></figure>
+
+<p>会报酱紫的错</p>
+<figure class="highlight"><pre><div class="line">sed: <span class="number">1</span>: <span class="string">"pssh.md"</span>: extra <span class="keyword">characters</span> <span class="keyword">at</span> <span class="operator">the</span> <span class="function"><span class="keyword">end</span> <span class="title">of</span> <span class="title">p</span> <span class="title">command</span></span></div></pre></figure>
+
+<p>应该酱紫用,加个空串 <code>&quot;&quot;</code></p>
+<figure class="highlight"><pre><div class="line"><span class="title">sed</span> -i <span class="string">""</span> <span class="string">"s/haha/heihei/g"</span> pssh.md</div></pre></figure>
 
 
       
@@ -163,7 +180,30 @@
   </div>
 </article>
 
+<% if (page.comments){ %>
+<section id="comment">
+  <h1 class="title"><%= __('comment') %></h1>
 
+  <% if(config.disqus_shortname) { %>
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    <% var disqus_shortname = 'duducat'; %>// required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  <% } %>
+</section>
+<% } %>
 
 
   

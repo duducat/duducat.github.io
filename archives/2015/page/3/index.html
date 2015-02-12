@@ -64,6 +64,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/02/12/iostat/">iostat</a>
+      </li>
+    
+      <li>
         <a href="/2015/01/30/lvs/">LVS</a>
       </li>
     
@@ -79,10 +83,6 @@
         <a href="/2015/01/20/ssh/">ssh</a>
       </li>
     
-      <li>
-        <a href="/2015/01/20/pssh/">pssh</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -92,7 +92,7 @@
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/cmd/">cmd</a><small>3</small></li>
+    <li><a href="/categories/cmd/">cmd</a><small>4</small></li>
   
     <li><a href="/categories/getting-start/">getting_start</a><small>3</small></li>
   
@@ -128,30 +128,21 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-28T09:55:25.000Z"><a href="/2015/01/28/nginx-log/">Jan 28 2015</a></time>
+        <time datetime="2015-01-28T10:09:38.000Z"><a href="/2015/01/28/tcpcopy/">Jan 28 2015</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/28/nginx-log/">nginx log 分析</a></h1>
+    <h1 class="title"><a href="/2015/01/28/tcpcopy/">tcpcopy 压力测试</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>nginx日志格式</p>
-<figure class="highlight"><pre><div class="line">log_format  main  '<span class="variable">$remote_addr</span> <span class="variable">$http_host</span> <span class="variable">$upstream_addr</span> [<span class="variable">$time_local</span>] <span class="variable">$request</span> '</div><div class="line">                  '<span class="string">"<span class="variable">$status</span>"</span> <span class="variable">$body_bytes_sent</span> <span class="string">"<span class="variable">$http_referer</span>"</span> '</div><div class="line">                  '<span class="string">"<span class="variable">$http_user_agent</span>"</span> <span class="string">"<span class="variable">$http_x_forwarded_for</span>"</span> <span class="string">"<span class="variable">$request_time</span>"</span>'<span class="comment">;</span></div></pre></figure>
+        <p>测试机器</p>
+<figure class="highlight"><pre><div class="line"><span class="char">$ </span>wget <span class="method">http:</span>//code.google.com/p/tcpcopy/downloads/detail?name=tcpcopy-<span class="number">0.9</span><span class="number">.6</span>.tar.gz</div><div class="line"><span class="char">$ </span>./configure —prefix=/home/tcpcopy && make && make install</div><div class="line"></div><div class="line"># 截取<span class="number">80</span>端口流量</div><div class="line"><span class="char">$ </span>iptables -t filter -<span class="class">I</span> <span class="class">OUTPUT</span> -p tcp --sport <span class="number">80</span> -j <span class="class">QUEUE</span></div><div class="line"><span class="char">$ </span>/home/tcpcopy/bin/intercept &</div></pre></figure>
 
-<p>打印响应时间并且去除引号</p>
-<figure class="highlight"><pre><div class="line">$ <span class="keyword">cat</span> test.<span class="built_in">log</span>|awk <span class="string">'{print $(NF)}'</span>| awk -F <span class="string">"\""</span> <span class="string">'{print $2}'</span>  &gt;<span class="keyword">a</span>.txt</div></pre></figure>
-
-<p>合并文件，将时间重新补上去</p>
-<figure class="highlight"><pre><div class="line">$ paste -d <span class="string">" "</span> test.<span class="built_in">log</span> <span class="operator">a</span>.txt &gt;b.txt</div></pre></figure>
-
-<p>查找响应时间大于2秒的url</p>
-<figure class="highlight"><pre><div class="line">$ cat b.txt |awk '(<span class="variable">$NF</span>&gt;<span class="number">2</span>){<span class="literal">print</span> <span class="variable">$6</span><span class="string">" "</span><span class="variable">$7</span><span class="string">" "</span><span class="variable">$NF</span>}'</div></pre></figure>
-
-<p>常用日志统计</p>
-<figure class="highlight"><pre><div class="line"><span class="shebang">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is top 10 of the access IP"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Time(s) IP address"</span></div><div class="line">cat access.log |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">1</span> | sort |uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"The total of 404 Page is:"</span></div><div class="line">cat access.log |grep <span class="string">'HTTP/1.1 "404"'</span> |wc <span class="operator">-l</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is top 10 of the 404 Page"</span></div><div class="line">cat access.log |grep <span class="string">'HTTP/1.1 "404"'</span> |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">7</span>| sort |uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is the top 10 of the request Page"</span></div><div class="line">cat access.log |sort -k <span class="number">6</span> |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">2</span>,<span class="number">7</span> |sort -k <span class="number">3</span> |uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"--------------------"</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Below is the top 10 of the max Concurrent "</span></div><div class="line">cat access.log |cut  <span class="operator">-d</span> <span class="string">'['</span> <span class="operator">-f</span>2 |cut <span class="operator">-d</span> <span class="string">']'</span> <span class="operator">-f</span>1 |cut <span class="operator">-d</span> <span class="string">' '</span> <span class="operator">-f</span> <span class="number">1</span>|uniq -c |sort -k <span class="number">1</span> |tail -n <span class="number">10</span></div></pre></figure>
+<p>线上机器</p>
+<figure class="highlight"><pre><div class="line"><span class="char">$ </span>wget <span class="method">https:</span>//code.google.com/p/tcpcopy/downloads/detail?name=tcpcopy-<span class="number">0.9</span><span class="number">.6</span>.tar.gz</div><div class="line"><span class="char">$ </span>./configure —prefix=/home/tcpcopy && make && make install</div><div class="line"></div><div class="line"><span class="char">$ </span>/home/tcpcopy/bin/tcpcopy -x <span class="number">80</span>-<span class="number">10.16</span><span class="number">.84</span><span class="number">.241</span>:<span class="number">80</span> -n <span class="number">5</span></div></pre></figure>
 
 
       
@@ -166,7 +157,30 @@
   </div>
 </article>
 
+<% if (page.comments){ %>
+<section id="comment">
+  <h1 class="title"><%= __('comment') %></h1>
 
+  <% if(config.disqus_shortname) { %>
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    <% var disqus_shortname = 'duducat'; %>// required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  <% } %>
+</section>
+<% } %>
 
 
   
